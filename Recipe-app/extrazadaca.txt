@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string path = @"C:\Users\kate_\source\repos\Solution4\ConsoleApp1";
+            Console.WriteLine("Do you want to create a table? (press yes)");
+            string answer= Console.ReadLine().ToLower();
+            if(answer == "yes")
+            {
+                Console.WriteLine("Please enter the name of the table?");
+                var name = Console.ReadLine();
+                if (!File.Exists(path + $@"\{name}.txt"))
+                {
+                    File.Create(path + $@"\{name}.txt").Close();
+                }
+                var FilePath = path + $@"\{name}.txt";
+                Console.WriteLine("Generating the table...");
+                Console.WriteLine($"Please open your text file {name}.txt located in {path}");
+                
+                using(StreamWriter sw = new StreamWriter(FilePath))
+                {
+                    int i = 1;
+                    while (i < 11)
+                    { 
+                        for(int j=1; j<11; j++)
+                        {
+                            sw.WriteLine($"{i}*{j}= {i * j}");
+                        }
+                        i++;
+                        sw.WriteLine("=================");
+                    }
+                  
+                }
+            }
+
+        }
+    }
+}
