@@ -1,0 +1,32 @@
+ Console.WriteLine("Please enter your name of your recipe?");
+            string recipeName = Console.ReadLine();
+            Console.WriteLine("Please enter the number of the ingredients?");
+
+            int NumberOfIngredients = int.Parse(Console.ReadLine());
+
+                List<int> ListLi = new List<int>();
+            for (int i = 0; i <= NumberOfIngredients; i++)
+            {
+                Console.WriteLine("Enter the ingredients");
+                ListLi.Add(NumberOfIngredients);
+            }
+
+         
+
+            string appPath = @"C:\Users\code\Desktop";
+            string newPapka = appPath + @"\newPapka\" + recipeName + @".txt";
+            Console.WriteLine($"Does newPapka exists before: {Directory.Exists(newPapka)}");
+            if (!Directory.Exists(newPapka))
+            {
+                Directory.CreateDirectory(newPapka);
+                Console.WriteLine("New directory was created!");
+            }
+
+            using (StreamWriter sw = new StreamWriter(newPapka)) {
+                for (int i = 0; i < ListLi.Count; i++)
+                {
+                    sw.WriteLine((i+1) + "." + ListLi[i]);
+                }
+            }
+
+                Console.ReadLine();
